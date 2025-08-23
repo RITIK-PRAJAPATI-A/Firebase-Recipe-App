@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1031457012333",
+    "project_id": "chefcraft-recipes-3ac65",
+    "storage_bucket": "chefcraft-recipes-3ac65.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031457012333:android:0a5dea5600d50358a6dd64",
+        "android_client_info": {
+          "package_name": "com.example.chefcraft"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDu_ikMwSzG28DR2ytdg5iqOpYCiAQYkrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
