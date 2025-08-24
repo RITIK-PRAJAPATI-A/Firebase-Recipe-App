@@ -7,9 +7,9 @@ class RecipeDetailsPage extends StatelessWidget {
 
   const RecipeDetailsPage({super.key, required this.recipeId});
 
-  // A new function to handle the deletion process
+
   Future<void> _deleteRecipe(BuildContext context) async {
-    // Show a confirmation dialog before deleting
+    
     bool? confirmed = await showDialog<bool>(
       context: context,
       builder: (BuildContext context) {
@@ -20,13 +20,13 @@ class RecipeDetailsPage extends StatelessWidget {
             TextButton(
               child: const Text('Cancel'),
               onPressed: () {
-                Navigator.of(context).pop(false); // User does not confirm
+                Navigator.of(context).pop(false); 
               },
             ),
             TextButton(
               child: const Text('Delete'),
               onPressed: () {
-                Navigator.of(context).pop(true); // User confirms
+                Navigator.of(context).pop(true);
               },
             ),
           ],
@@ -34,18 +34,18 @@ class RecipeDetailsPage extends StatelessWidget {
       },
     );
 
-    // If the user confirmed the deletion, proceed
+
     if (confirmed == true) {
       try {
-        // Delete the document from Firestore
+      
         await FirebaseFirestore.instance.collection('recipes').doc(recipeId).delete();
         
-        // If the widget is still mounted, navigate back to the home page
+
         if (context.mounted) {
           Navigator.pop(context);
         }
       } catch (e) {
-        // Handle any errors
+
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('Failed to delete recipe: $e')),
@@ -87,11 +87,11 @@ class RecipeDetailsPage extends StatelessWidget {
                   );
                 },
               ),
-              // New Delete Button
+       
               IconButton(
                 icon: const Icon(Icons.delete),
                 onPressed: () {
-                  _deleteRecipe(context); // Call the delete function
+                  _deleteRecipe(context); 
                 },
               ),
             ],

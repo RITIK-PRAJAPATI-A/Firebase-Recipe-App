@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'firebase_options.dart';
 import 'add_recipe_page.dart';
-import 'recipe_details_page.dart'; // Import the new details page
+import 'recipe_details_page.dart'; 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,11 +62,10 @@ class HomePage extends StatelessWidget {
             itemBuilder: (context, index) {
               var recipe = snapshot.data!.docs[index];
               
-              // --- CHANGE IS HERE ---
-              // Wrap the Card with InkWell to make it tappable
+           
               return InkWell(
                 onTap: () {
-                  // Navigate to the details page, passing the recipe's unique ID
+        
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -74,7 +73,7 @@ class HomePage extends StatelessWidget {
                     ),
                   );
                 },
-                // --- END OF CHANGE ---
+               
                 child: Card(
                   clipBehavior: Clip.antiAlias,
                   elevation: 5.0,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddRecipePage extends StatefulWidget {
-  // Add optional properties to receive existing recipe data for editing
+
   final String? recipeId;
   final Map<String, dynamic>? initialData;
 
@@ -19,13 +19,12 @@ class _AddRecipePageState extends State<AddRecipePage> {
   final _imageUrlController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  // Check if we are in "edit mode"
   bool get isEditing => widget.recipeId != null;
 
   @override
   void initState() {
     super.initState();
-    // If we are editing, pre-fill the text fields
+
     if (widget.initialData != null) {
       _titleController.text = widget.initialData!['title'] ?? '';
       _ingredientsController.text = widget.initialData!['ingredients'] ?? '';
@@ -34,7 +33,6 @@ class _AddRecipePageState extends State<AddRecipePage> {
     }
   }
 
-  // This function now handles both creating and updating
   Future<void> _saveRecipe() async {
     if (_formKey.currentState!.validate()) {
       try {
@@ -46,18 +44,18 @@ class _AddRecipePageState extends State<AddRecipePage> {
         };
 
         if (isEditing) {
-          // If editing, update the existing document
+        
           await FirebaseFirestore.instance
               .collection('recipes')
               .doc(widget.recipeId)
               .update(recipeData);
         } else {
-          // If creating, add a new document
+        
           await FirebaseFirestore.instance.collection('recipes').add(recipeData);
         }
 
         if (mounted) {
-          // Go back twice if editing (details -> home), once if creating (form -> home)
+          
           Navigator.pop(context);
           if (isEditing) {
             Navigator.pop(context);
@@ -75,7 +73,7 @@ class _AddRecipePageState extends State<AddRecipePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // Show a different title depending on if we are creating or editing
+
         title: Text(isEditing ? 'Edit Recipe' : 'Add New Recipe'),
       ),
       body: Padding(
@@ -84,7 +82,7 @@ class _AddRecipePageState extends State<AddRecipePage> {
           key: _formKey,
           child: ListView(
             children: [
-              // Form fields are the same as before
+            
               TextFormField(
                 controller: _titleController,
                 decoration: const InputDecoration(labelText: 'Title'),
